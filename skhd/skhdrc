@@ -1,0 +1,6 @@
+# open terminal
+cmd - return : ~/.config/skhd/iterm.sh
+
+# open safari
+cmd - backspace : ~/.config/skhd/safari.sh
+

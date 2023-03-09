@@ -1,0 +1,56 @@
+#!/bin/sh
+
+print_info () {
+    echo "[+] $1"
+}
+
+print_and_exit () {
+    echo "[-] $1"
+    exit 1
+}
+
+abspath() {
+    cd "$(dirname "$1")" || print_and_exit "$1 does not exists"
+    printf "%s/%s\n" "$(pwd)" "$(basename "$1")"
+    cd "$OLDPWD" || true
+}
+
+remove_config () {
+    CONFIG_FOLDER=$HOME/.config/$1
+    if [ -L "$CONFIG_FOLDER" ]; then
+        print_info "Removing $1 symlink"
+        rm "$CONFIG_FOLDER"
+    elif [ -d "$CONFIG_FOLDER" ]; then
+        printf "WARNING: %s is not symlink. Are you sure [Ny]? " "$1"
+        read -r REPLY
+        if [ "$REPLY" != "${REPLY#[Yy]}" ]; then
+            print_info "Removing $1 directory"
+            rm -rf "$CONFIG_FOLDER"
+        fi
+    else
+        print_info "$1 does not exists"
+    fi
+}
+
+install_config() {
+    NAME=$(basename "$1")
+    CONFIG_PATH=$(abspath "$1")
+
+    # Remove the possible old symlink
+    remove_config "$NAME"
+
+    print_info "Installing $NAME"
+    ln -s "$CONFIG_PATH" "$HOME/.config/$NAME"
+}
+
+case "$1" in
+    "install" )
+        install_config "$2"
+        ;;
+    "remove" )
+        remove_config "$2"
+        ;;
+    * )
+        echo "Usage: [install|remove] [config name]"
+        ;;
+esac
