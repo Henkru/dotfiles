@@ -40,7 +40,7 @@ install_config() {
     remove_config "$NAME"
 
     print_info "Installing $NAME"
-    ln -s "$CONFIG_PATH" "$HOME/.config/$NAME"
+    ln -s "$CONFIG_PATH" "$2/$NAME"
 }
 
 ensure_line() {
@@ -58,7 +58,7 @@ install_shell() {
 
 case "$1" in
     "install" )
-        install_config "$2"
+        install_config "$2" "{$3:-'$HOME/.config'}"
         ;;
     "remove" )
         remove_config "$2"
