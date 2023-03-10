@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-number=$(pgrep -c iTerm2)
+number=$(ps aux | grep iTerm2 |wc -l)
 
 if [ "$number" -gt 1 ]
 then

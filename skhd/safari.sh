@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-number=$(pgrep -c "/Applications/Safari.app/Contents/MacOS/Safari")
+number=$(ps aux | grep "/Applications/Safari.app/Contents/MacOS/Safari" |wc -l)
 if [ "$number" -gt 1 ]
 then
     set -e
