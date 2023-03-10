@@ -43,12 +43,30 @@ install_config() {
     ln -s "$CONFIG_PATH" "$HOME/.config/$NAME"
 }
 
+ensure_line() {
+    grep -qxF "$2" "$1" || echo "$2" >> "$1"
+}
+
+install_shell() {
+    RC=$1
+    if [ -f "$RC" ]; then
+        echo "Installing $RC"
+        ensure_line "$RC" "export PATH=\"$HOME/.config/shell/bin:\$PATH\""
+        ensure_line "$RC" "source '$HOME/.config/shell/aliases.sh'"
+    fi
+}
+
 case "$1" in
     "install" )
         install_config "$2"
         ;;
     "remove" )
         remove_config "$2"
+        ;;
+    "shell" )
+        install_config "shell"
+        install_shell "$HOME/.zshrc"
+        install_shell "$HOME/.bashrc"
         ;;
     * )
         echo "Usage: [install|remove] [config name]"
