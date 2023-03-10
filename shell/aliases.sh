@@ -9,3 +9,6 @@ alias wa='git worktree-add'
 
 # Tmux related
 alias t='tmux-new-session'
+
+# GPG
+alias yc='gpg-connect-agent "scd serialno" "learn --force" /bye'
