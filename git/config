@@ -14,3 +14,4 @@
     required = true
 [alias]
 	clone-for-worktrees = "!sh $HOME/.config/git/git-clone-bare-for-worktrees.sh"
+    worktree-add = "!sh $HOME/.config/git/git-add-worktree.sh"
