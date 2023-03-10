@@ -1,17 +1,17 @@
 [user]
-	name = Henri Nurmi
-	email = henri@nurmi.me
+    name = Henri Nurmi
+    email = henri@nurmi.me
 [commit]
-	gpgsign = true
+    gpgsign = true
 [gpg]
-	program = gpg2
+    program = gpg2
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
     required = true
 [alias]
-	clone-for-worktrees = "!sh $HOME/.config/git/git-clone-bare-for-worktrees.sh"
+    clone-for-worktrees = "!sh $HOME/.config/git/git-clone-bare-for-worktrees.sh"
     worktree-add = "!sh $HOME/.config/git/git-add-worktree.sh"
