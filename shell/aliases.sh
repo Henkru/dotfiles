@@ -12,3 +12,7 @@ alias t='tmux-new-session'
 
 # GPG
 alias yc='gpg-connect-agent "scd serialno" "learn --force" /bye'
+
+# Folders
+alias g.='cd ~/GitHub/dotfiles/main'
+alias gG='cd ~/GitHub'
