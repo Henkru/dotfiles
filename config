@@ -58,7 +58,7 @@ install_shell() {
 
 case "$1" in
     "install" )
-        install_config "$2" "{$3:-'$HOME/.config'}"
+        install_config "$2" "${3:-"$HOME/.config"}"
         ;;
     "remove" )
         remove_config "$2"
