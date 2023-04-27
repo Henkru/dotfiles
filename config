@@ -64,7 +64,7 @@ case "$1" in
         remove_config "$2"
         ;;
     "shell" )
-        install_config "shell"
+        install_config "shell" "${3:-"$HOME/.config"}"
         install_shell "$HOME/.zshrc"
         install_shell "$HOME/.bashrc"
         ;;
